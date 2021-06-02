@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-import FullCalendar, { sliceEvents } from '@fullcalendar/react'
-import { Calendar } from '@fullcalendar/core';
-import interactionPlugin from '@fullcalendar/interaction';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import { database, auth } from "../firebase";
+import CalendarComponent from '../components/Calendar'
 
 class Dashbord extends Component{
 
-  handleDateClick = (arg) => {
-    alert(arg.dateStr)
-  }
+  state = {
+    modal: false,
+    event: {
+      title: "",
+      start: new Date()
+    }
+  };
+
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
+  };
+
+  handleEventClick = ({ event, el }) => {
+    this.toggle();
+    this.setState({ event });
+  };
 
   render(){
     return (
@@ -18,20 +27,11 @@ class Dashbord extends Component{
           <div className="row">
             <div className="col mb-3">
               <div className="card">
-                  <div className="card-body">
-                    <div className="e-profile">
-                        <FullCalendar
-                          plugins={[ timeGridPlugin, interactionPlugin ]}
-                          initialView="timeGridWeek"
-                          allDaySlot={false}
-                          weekends={false}
-                          slotMinTime="08:00:00"
-                          slotMaxTime="16:00:00"
-                          height="auto"
-                          dateClick={this.handleDateClick}
-                        />
-                    </div>
+                <div className="card-body">
+                  <div className="e-profile">
+                      <CalendarComponent />
                   </div>
+                </div>
               </div>
             </div>
           </div>
