@@ -1,2 +1,2 @@
-# Doctor-Appoinment-App
+# Doctor-Appointment-App
 using reactjs
