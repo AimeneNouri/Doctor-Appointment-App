@@ -15,16 +15,21 @@ class Sidebar extends Component {
             <li className="nav-item">
               <NavLink className="nav-link" to='/'>
                 <i className="nc-icon nc-chart-pie-35"></i>
-                <p>Home</p>
+                <p>Acceuil</p>
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to='/profile'>
                 <i className="nc-icon nc-circle-09"></i>
-                <p>User Profile</p>
+                <p>Profil Utilisateur</p>
               </NavLink>
             </li>
-
+            <li className="nav-item">
+              <NavLink className="nav-link" to='/historique'>
+                <i className="nc-icon nc-circle-09"></i>
+                <p>Mes réservations</p>
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

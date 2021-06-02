@@ -20,7 +20,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg " color-on-scroll="500">
+    <nav className="navbar navbar-expand-lg" color-on-scroll="500">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">Home</a>
         <button onClick={handleToggleNav} className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,89 +1,173 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from "react";
 import { Form, Button, FormGroup, Alert } from "react-bootstrap";
 import "../assets/css/register.css";
-import { useAuth } from '../contexts/Auth'
-import { useHistory } from 'react-router-dom'
+import { useAuth } from "../contexts/Auth";
+import { useHistory } from "react-router-dom";
 
 export default function Register() {
-    const nomRef = useRef()
-    const prenomRef = useRef()
-    const adresseRef = useRef()
-    const telRef = useRef()
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
-    const { signup } = useAuth()
-    const history = useHistory()
+  const nomRef = useRef();
+  const prenomRef = useRef();
+  const adresseRef = useRef();
+  const telRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signup } = useAuth();
+  const history = useHistory();
 
-    async function handleSubmit(e){
-        e.preventDefault()
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-        if(passwordRef.current.value !== passwordConfirmRef.current.value){
-            return setError('Password does not match the confirm password')
-        }
-
-        try{  
-            setError("")
-            setLoading(true)     
-            await signup(emailRef.current.value, passwordRef.current.value, nomRef.current.value, prenomRef.current.value, adresseRef.current.value, telRef.current.value)
-            history.push("/")
-        } catch {
-            setError("Failed to create an account")
-        }
-
-        setLoading(false)
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Password does not match the confirm password");
     }
 
-    return (
-        <div className="col-sm-4 vertical-center">
-            <h2 className="font-weight-bold">Register</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                    <Form.Label>Nom</Form.Label>
-                    <Form.Control type="text" className="form-control" ref={nomRef} placeholder="Enter nom" required/>
-                </FormGroup>
+    try {
+      setError("");
+      setLoading(true);
+      await signup(
+        emailRef.current.value,
+        passwordRef.current.value,
+        nomRef.current.value,
+        prenomRef.current.value,
+        adresseRef.current.value,
+        telRef.current.value
+      );
+      history.push("/");
+    } catch {
+      setError("Failed to create an account");
+    }
 
-                <FormGroup>
-                    <Form.Label>Prenom</Form.Label>
-                    <Form.Control type="text" className="form-control" ref={prenomRef} placeholder="Enter prenom" required/>
-                </FormGroup>
+    setLoading(false);
+  }
 
-                <FormGroup>
-                    <Form.Label>Adresse</Form.Label>
-                    <Form.Control type="text" className="form-control" ref={adresseRef} placeholder="Enter adresse" required/>
-                </FormGroup>
-
-                <FormGroup>
-                    <Form.Label>Numero telephone</Form.Label>
-                    <Form.Control type="text" className="form-control" ref={telRef} placeholder="Enter numero tel" required/>
-                </FormGroup>
-
-                <FormGroup>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" className="form-control" ref={emailRef} placeholder="Enter email" required/>
-                </FormGroup>
-
-                <FormGroup>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" className="form-control" ref={passwordRef} placeholder="Enter password" required/>
-                </FormGroup>
-
-                <FormGroup>
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" className="form-control" ref={passwordConfirmRef} placeholder="Enter confirm password" required/>
-                </FormGroup>
-                
-                <div className="otherProjects">
-                    <Button disabled={loading} type="submit" className="btn-block btn1 btn-outline btn-xl">Sign up</Button>
+  return (
+    <div className="col-sm-5 vertical-center">
+      <div className="col">
+        <div className="row">
+          <div className="col mb-3">
+            <div className="card">
+              <div className="card-body">
+                <div className="e-profile">
+                  <h2 className="font-weight-bold">Register</h2>
+                  {error && <Alert variant="danger">{error}</Alert>}
+                  <Form onSubmit={handleSubmit}>
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Email</label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            placeholder="user@example.com"
+                            ref={emailRef}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Password</label>
+                          <input
+                            className="form-control"
+                            type="password"
+                            placeholder="••••••••••"
+                            ref={passwordRef}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Confirm Password</label>
+                          <input
+                            className="form-control"
+                            type="password"
+                            placeholder="••••••••••"
+                            ref={passwordConfirmRef}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Nom</label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            ref={nomRef}
+                            placeholder="Smith"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Prenom</label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            ref={prenomRef}
+                            placeholder="Jhon"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Adresse</label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            ref={adresseRef}
+                            placeholder="Ain Chock, Casa"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Numero telephone</label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            placeholder="+1-202-555-0155"
+                            ref={telRef}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="otherProjects">
+                      <Button
+                        disabled={loading}
+                        type="submit"
+                        className="btn-block btn1 btn-outline btn-xl"
+                      >
+                        Sign up
+                      </Button>
+                    </div>
+                    <p className="text-right">
+                      <span className="notReg"> Already have account,</span>{" "}
+                      <a href="/login"> Sign in?</a>
+                    </p>
+                  </Form>
                 </div>
-                <p className="text-right">
-                    <span className="notReg"> Already have account,</span> <a href="/login"> Sign in?</a>
-                </p>
-            </Form>
+              </div>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-

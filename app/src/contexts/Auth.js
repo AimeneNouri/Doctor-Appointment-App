@@ -25,8 +25,7 @@ export function AuthProvider({ children }) {
                 "adresse" : adresse,
                 "tel" : tel,
                 "email": email,
-                "password": password,
-                "image": "",
+                "password": password
             }).catch(function(error) {
                 console.log(error.message);
                 console.log(error.code);
