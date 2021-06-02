@@ -2,24 +2,6 @@ import React, { Component } from "react";
 import CalendarComponent from '../components/Calendar'
 
 class Dashbord extends Component{
-
-  state = {
-    modal: false,
-    event: {
-      title: "",
-      start: new Date()
-    }
-  };
-
-  toggle = () => {
-    this.setState({ modal: !this.state.modal });
-  };
-
-  handleEventClick = ({ event, el }) => {
-    this.toggle();
-    this.setState({ event });
-  };
-
   render(){
     return (
       <div className="content">

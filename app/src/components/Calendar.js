@@ -7,6 +7,12 @@ import { database, auth } from "../firebase";
 import { Modal, Button,  } from 'react-bootstrap'
 
 class CalendarComponent extends Component {
+
+    handleEventClick = ({ event, el }) => {
+    this.toggle();
+    this.setState({ event });
+    };
+
     render() {
         return (
             <div>
@@ -19,7 +25,6 @@ class CalendarComponent extends Component {
                     slotMinTime="08:00:00"
                     slotMaxTime="16:00:00"
                     height="auto"
-                    eventRender={this.handleEventRender}
                     eventClick={this.handleEventClick}
                     editable={true}
                     selectable={true}
