@@ -8,9 +8,14 @@ import { Modal, Button,  } from 'react-bootstrap'
 
 class CalendarComponent extends Component {
 
-    handleEventClick = ({ event, el }) => {
-    this.toggle();
-    this.setState({ event });
+    state = {
+        startDate: "",
+        endDate: ""
+    }
+
+    handleEventClick = (event) => {
+        alert('selected ' + event.startStr + ' to ' + event.endStr);
+        
     };
 
     render() {
@@ -25,13 +30,13 @@ class CalendarComponent extends Component {
                     slotMinTime="08:00:00"
                     slotMaxTime="16:00:00"
                     height="auto"
-                    eventClick={this.handleEventClick}
-                    editable={true}
+                    select={this.handleEventClick}
                     selectable={true}
-                    events={[
-                    { title: "event 1", date: "2021-06-01" },
-                    { title: "event 2", date: "2021-06-02" }
-                    ]}
+                    header={{
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    }}
                 />
             </div>
         )
