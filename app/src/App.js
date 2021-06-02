@@ -14,6 +14,7 @@ function App() {
           <AuthProvider>
               <PrivateRoute exact path="/" component={Index} />
               <PrivateRoute exact path="/profile" component={Index} />
+              <PrivateRoute exact path="/appointment-lists" component={Index} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
           </AuthProvider>

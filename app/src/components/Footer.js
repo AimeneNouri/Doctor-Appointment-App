@@ -10,7 +10,17 @@ class Footer extends Component {
                         <ul className="footer-menu">
                             <li>
                                 <Link to="/">
-                                Home
+                                    Acceuil
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/profile">
+                                    Profil
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/appointment-lists">
+                                    Mes réservations
                                 </Link>
                             </li>
                         </ul>

@@ -25,7 +25,7 @@ class Sidebar extends Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to='/historique'>
+              <NavLink className="nav-link" to='/appointment-lists'>
                 <i className="nc-icon nc-circle-09"></i>
                 <p>Mes réservations</p>
               </NavLink>
