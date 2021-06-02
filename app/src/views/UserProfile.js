@@ -9,18 +9,20 @@ class UserProfile extends React.Component {
 
         this.state = {
             users : {
-                nom : "",
-                prenom: "",
-                adresse: "",
-                tel: "",
-                uid: "",
-                password: "",
-                email: ""
+                nom : '',
+                prenom: '',
+                adresse: '',
+                tel: '',
+                uid: '',
+                password: '',
+                email: ''
             },
 
             type : 'password',
             visible : 'false'
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     showHide = (e) => {
@@ -32,25 +34,49 @@ class UserProfile extends React.Component {
     }
 
     componentDidMount(){
-        database
-            .ref('users/' + auth.currentUser.uid)
-            .once("value")
-            .then(snapshot => {
-                const data = snapshot.val();
-                this.setState({
-                    users : {
-                        nom : data.nom,
-                        prenom: data.prenom,
-                        adresse: data.adresse,
-                        tel: data.tel,
-                        uid: data.uid,
-                        password: data.password,
-                        email: data.email
-                    }
-                })
-            });
+        this.mapUserDetailsToState();   
     }
-    
+
+    mapUserDetailsToState(){
+        database
+        .ref('users/' + auth.currentUser.uid)
+        .once("value")
+        .then(snapshot => {
+            const data = snapshot.val();
+            this.setState({
+                users : {
+                    nom : data.nom,
+                    prenom: data.prenom,
+                    adresse: data.adresse,
+                    tel: data.tel,
+                    uid: data.uid,
+                    password: data.password,
+                    email: data.email,
+                    image: data.image
+                }
+            })
+        });
+    }
+
+    handleSubmit(e){
+        e.preventDefault()
+
+        database.ref('users/' + auth.currentUser.uid).set({
+            "uid": auth.currentUser.uid,
+            "nom" : this.state.users.nom,
+            "prenom" : this.state.users.prenom,
+            "adresse" : this.state.users.adresse,
+            "tel" : this.state.users.tel,
+            "email": this.state.users.email,
+            "password": this.state.users.password,
+        }).catch(function(error) {
+            console.log(error.message);
+            console.log(error.code);
+        })
+
+        alert("Profile Updated successfully")
+    }
+
     render(){
         return (
             <div className="content">
@@ -68,16 +94,10 @@ class UserProfile extends React.Component {
                                   style={{
                                     height: "140px",
                                     backgroundColor: "rgb(233, 236, 239)",
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      color: "rgb(166, 168, 170)",
-                                      font: "bold 8pt Arial",
-                                    }}
-                                  >
-                                    140x140
-                                  </span>
+                                  }}>
+                                    <span style={{opacity: ".5"}}>
+                                        144x144
+                                    </span>
                                 </div>
                               </div>
                             </div>
@@ -92,7 +112,7 @@ class UserProfile extends React.Component {
                                 <div className="mt-2">
                                   <span class="file-input btn btn-primary btn-file" style={{ cursor: "pointer" }}>
                                     <i className="fa fa-fw fa-camera" /> Browse&hellip;{" "}
-                                    <input type="file" multiple />
+                                    <input type="file" onChange={(e) => {this.imageHandler(e.target.files)}}/>
                                   </span>
                                 </div>
                               </div>
@@ -112,7 +132,7 @@ class UserProfile extends React.Component {
                           </ul>
                           <div className="tab-content pt-3">
                             <div className="tab-pane active">
-                              <form className="form" noValidate>
+                              <form className="form" noValidate onSubmit={this.handleSubmit}>
                                 <div className="row">
                                   <div className="col">
                                     <div className="row">
@@ -125,6 +145,7 @@ class UserProfile extends React.Component {
                                             name="nom"
                                             placeholder="Smith"
                                             value={this.state.users.nom}
+                                            readOnly    
                                           />
                                         </div>
                                       </div>
@@ -137,6 +158,7 @@ class UserProfile extends React.Component {
                                             name="prenom"
                                             placeholder="john"
                                             value={this.state.users.prenom}
+                                            readOnly
                                           />
                                         </div>
                                       </div>
@@ -151,6 +173,7 @@ class UserProfile extends React.Component {
                                             name="adresse"
                                             placeholder="Ain Chock, Casablanca"
                                             value={this.state.users.adresse}
+                                            readOnly
                                           />
                                         </div>
                                       </div>
@@ -163,6 +186,7 @@ class UserProfile extends React.Component {
                                             name="numTel"
                                             placeholder="+1-202-555-0155"
                                             value={this.state.users.tel}
+                                            readOnly
                                           />
                                         </div>
                                       </div>
@@ -176,20 +200,7 @@ class UserProfile extends React.Component {
                                             type="text"
                                             placeholder="user@example.com"
                                             value={this.state.users.email}
-                                          />
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="row">
-                                      <div className="col mb-3">
-                                        <div className="form-group">
-                                          <label>About</label>
-                                          <textarea
-                                            style={{ height: "100%" }}
-                                            className="form-control"
-                                            rows={5}
-                                            placeholder="My Bio"
-                                            defaultValue={""}
+                                            readOnly
                                           />
                                         </div>
                                       </div>
