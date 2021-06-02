@@ -23,10 +23,10 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg " color-on-scroll="500">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">Home</a>
-        <button onClick={handleToggleNav} class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar burger-lines"></span>
-            <span class="navbar-toggler-bar burger-lines"></span>
-            <span class="navbar-toggler-bar burger-lines"></span>
+        <button onClick={handleToggleNav} className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-bar burger-lines"></span>
+            <span className="navbar-toggler-bar burger-lines"></span>
+            <span className="navbar-toggler-bar burger-lines"></span>
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navigation">
           <ul className="navbar-nav ml-auto">

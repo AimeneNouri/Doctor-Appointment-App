@@ -51,7 +51,7 @@ export default function Login() {
                     <Button disabled={loading} type="submit" className="btn-block btn1 btn-outline btn-xl">Log In</Button>
                 </div>
                 <p className="text-right">
-                    <span className="notReg"> Already have account,</span> <a href="/login"> Sign in?</a>
+                    <span className="notReg"> Already have account,</span> <a href="/register"> Sign up?</a>
                 </p>
             </Form>
         </div>

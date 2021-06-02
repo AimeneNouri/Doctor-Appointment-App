@@ -1,0 +1,126 @@
+h2 {
+    text-align: center;
+  }
+  
+  a:hover {
+    color: cornflowerblue;
+  }
+  
+  .notReg {
+    opacity: 0.6;
+  }
+  
+  .vertical-center {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .outer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .inner {
+    width: 450px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    transition: all 0.3s;
+  }
+  
+  .outer .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
+  }
+  
+  /*btn*/
+  .otherProjects {
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  .btn-outline {
+    color: rgb(100, 148, 237);
+    border: 1px solid;
+    border-color: cornflowerblue;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .btn-outline:hover,
+  .btn-outline:focus,
+  .btn-outline:active,
+  .btn-outline.active {
+    color: white;
+    border-color: cornflowerblue;
+    background-color: cornflowerblue;
+  }
+  
+  .btn-xl {
+    font-size: 10px;
+    padding: 15px;
+  }
+  
+  .btn1 {
+    border-radius: 8px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /*checkbox*/
+  input[type="checkbox"]{
+      display: none;
+  }
+  
+  .checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .checkbox::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19,5V19H5V5H19m0-2H5A2.006,2.006,0,0,0,3,5V19a2.006,2.006,0,0,0,2,2H19a2.006,2.006,0,0,0,2-2V5A2.006,2.006,0,0,0,19,3Z" fill="rgb(99, 99, 99)"/><path d="M0,0H24V24H0Z" fill="none"/></svg>');
+    line-height: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .checkbox:active::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0H24V24H0Z" fill="none"/><path d="M19,3H5A2,2,0,0,0,3,5V19a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V5A2,2,0,0,0,19,3ZM10,17,5,12l1.41-1.41L10,14.17l7.59-7.59L19,8Z" fill="rgb(99, 99, 98)"/></svg>');
+  }
+  
+  input[type="checkbox"]:checked + .checkbox::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0H24V24H0Z" fill="none"/><path d="M19,3H5A2,2,0,0,0,3,5V19a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V5A2,2,0,0,0,19,3ZM10,17,5,12l1.41-1.41L10,14.17l7.59-7.59L19,8Z" fill="rgb(100, 148, 237)"/></svg>');
+  }
+  
+  input[type="checkbox"]:checked + .checkbox:active::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0H24V24H0Z" fill="none"/><path d="M19,3H5A2,2,0,0,0,3,5V19a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V5A2,2,0,0,0,19,3ZM10,17,5,12l1.41-1.41L10,14.17l7.59-7.59L19,8Z" fill="rgb(100, 148, 237)"/></svg>');
+  }
+  
+  /* hover indicator */
+  .checkbox:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5rem;
+    will-change: transform;
+    transition: 0.3s ease-in-out;
+    transform: scale(0);
+  }
+  
+  .checkbox:hover::after {
+    background: rgba(43, 133, 255, 0.1);
+    transform: scale(1);
+  }
+  

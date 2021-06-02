@@ -1,10 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, FormGroup, Alert } from "react-bootstrap";
-import "../assets/css/login.css";
+import "../assets/css/register.css";
 import { useAuth } from '../contexts/Auth'
 import { useHistory } from 'react-router-dom'
 
 export default function Register() {
+    const nomRef = useRef()
+    const prenomRef = useRef()
+    const adresseRef = useRef()
+    const telRef = useRef()
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -23,7 +27,7 @@ export default function Register() {
         try{  
             setError("")
             setLoading(true)     
-            await signup(emailRef.current.value, passwordRef.current.value)
+            await signup(emailRef.current.value, passwordRef.current.value, nomRef.current.value, prenomRef.current.value, adresseRef.current.value, telRef.current.value)
             history.push("/")
         } catch {
             setError("Failed to create an account")
@@ -37,6 +41,26 @@ export default function Register() {
             <h2 className="font-weight-bold">Register</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                    <Form.Label>Nom</Form.Label>
+                    <Form.Control type="text" className="form-control" ref={nomRef} placeholder="Enter nom" required/>
+                </FormGroup>
+
+                <FormGroup>
+                    <Form.Label>Prenom</Form.Label>
+                    <Form.Control type="text" className="form-control" ref={prenomRef} placeholder="Enter prenom" required/>
+                </FormGroup>
+
+                <FormGroup>
+                    <Form.Label>Adresse</Form.Label>
+                    <Form.Control type="text" className="form-control" ref={adresseRef} placeholder="Enter adresse" required/>
+                </FormGroup>
+
+                <FormGroup>
+                    <Form.Label>Numero telephone</Form.Label>
+                    <Form.Control type="text" className="form-control" ref={telRef} placeholder="Enter numero tel" required/>
+                </FormGroup>
+
                 <FormGroup>
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" className="form-control" ref={emailRef} placeholder="Enter email" required/>
