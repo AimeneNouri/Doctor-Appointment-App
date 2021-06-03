@@ -33,6 +33,12 @@ class CalendarComponent extends Component {
         });
     }
 
+    handleEventRemove = (clickInfo) =>{
+        if (window.confirm(`Are you sure you want to delete this appointment`)) {
+            clickInfo.event.remove()
+        }
+    }
+
     render() {
         function renderEventContent(eventInfo) {
             return (
@@ -41,6 +47,8 @@ class CalendarComponent extends Component {
               </div>
             )
         }
+
+        
 
         return (
             <div>
@@ -56,6 +64,7 @@ class CalendarComponent extends Component {
                     select={this.handleEventClick}
                     selectable={true}
                     eventContent={renderEventContent}
+                    eventClick={this.handleEventRemove}
                     events={[
                         { title: this.state.name, date: this.state.startDate }
                     ]}
