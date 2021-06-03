@@ -9,16 +9,39 @@ import { Modal, Button,  } from 'react-bootstrap'
 class CalendarComponent extends Component {
 
     state = {
+        name:"",
         startDate: "",
         endDate: ""
     }
 
     handleEventClick = (event) => {
-        alert('selected ' + event.startStr + ' to ' + event.endStr);
-        
+        this.setState({
+            startDate: event.startStr,
+            endDate: event.endStr
+        })
     };
 
+    componentDidMount(){
+        database
+        .ref('users/' + auth.currentUser.uid)
+        .once("value")
+        .then(snapshot => {
+            const name = snapshot.val().nom +" " + snapshot.val().prenom;
+            this.setState({
+                name: name
+            })
+        });
+    }
+
     render() {
+        function renderEventContent(eventInfo) {
+            return (
+              <div>
+                <b>{eventInfo.timeText}</b> {eventInfo.event.title}
+              </div>
+            )
+        }
+
         return (
             <div>
                 <FullCalendar
@@ -32,11 +55,10 @@ class CalendarComponent extends Component {
                     height="auto"
                     select={this.handleEventClick}
                     selectable={true}
-                    header={{
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                    }}
+                    eventContent={renderEventContent}
+                    events={[
+                        { title: this.state.name, date: this.state.startDate }
+                    ]}
                 />
             </div>
         )
