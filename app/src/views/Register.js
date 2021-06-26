@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, FormGroup, Alert } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import "../assets/css/register.css";
 import { useAuth } from "../contexts/Auth";
 import { useHistory } from "react-router-dom";

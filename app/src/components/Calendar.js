@@ -1,59 +1,201 @@
-import React, { Component } from 'react'
-import FullCalendar, { sliceEvents } from '@fullcalendar/react'
-import { Calendar } from '@fullcalendar/core';
-import interactionPlugin from '@fullcalendar/interaction';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import React, { Component } from "react";
+import FullCalendar from "@fullcalendar/react";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import { database, auth } from "../firebase";
-import { Modal, Button,  } from 'react-bootstrap'
+import { Modal, Button, Form } from "react-bootstrap";
+import emailjs from 'emailjs-com';
+import "../index.css";
 
 class CalendarComponent extends Component {
+  state = {
+    name: "",
+    day: "",
+    startDate: "",
+    show: false,
+    events: [],
+    times: [
+      {
+        id: "1",
+        start: "08:00:00",
+        end: "08:30:00",
+      },
+      {
+        id: "2",
+        start: "08:30:00",
+        end: "09:00:00",
+      },
+      {
+        id: "3",
+        start: "09:00:00",
+        end: "09:30:00",
+      },
+      {
+        id: "4",
+        start: "09:30:00",
+        end: "10:00:00",
+      },
+      {
+        id: "5",
+        start: "10:00:00",
+        end: "10:30:00",
+      },
+      {
+        id: "6",
+        start: "10:30:00",
+        end: "11:00:00",
+      },
+      {
+        id: "7",
+        start: "11:00:00",
+        end: "11:30:00",
+      },
+      {
+        id: "8",
+        start: "11:30:00",
+        end: "12:00:00",
+      },
+      {
+        id: "9",
+        start: "12:00:00",
+        end: "12:30:00",
+      },
+      {
+        id: "10",
+        start: "12:30:00",
+        end: "13:00:00",
+      },
+      {
+        id: "11",
+        start: "13:00:00",
+        end: "13:30:00",
+      },
+      {
+        id: "12",
+        start: "13:30:00",
+        end: "14:00:00",
+      },
+      {
+        id: "13",
+        start: "14:00:00",
+        end: "14:30:00",
+      },
+      {
+        id: "14",
+        start: "14:30:00",
+        end: "15:00:00",
+      },
+      {
+        id: "15",
+        start: "15:00:00",
+        end: "15:30:00",
+      },
+      {
+        id: "16",
+        start: "15:30:00",
+        end: "16:00:00",
+      },
+    ],
+  };
 
-    state = {
-        name:"",
-        startDate: "",
-        endDate: ""
-    }
-
-    handleEventClick = (event) => {
-        this.setState({
-            startDate: event.startStr,
-            endDate: event.endStr
+  componentDidMount() {
+    const dbRef = database.ref('appointments/');
+    const post = dbRef.orderByKey();
+    post.once("value", snap => {
+        snap.forEach(child => {
+            this.state.events.push(child.val());
         })
-    };
+    })
+    console.log(this.state.events)
+    this.renderEventContent();
+  }
 
-    componentDidMount(){
-        database
-        .ref('users/' + auth.currentUser.uid)
-        .once("value")
-        .then(snapshot => {
-            const name = snapshot.val().nom +" " + snapshot.val().prenom;
-            this.setState({
-                name: name
-            })
+  handleEventRemove = (clickInfo) => {
+    if (window.confirm(`Are you sure you want to delete this appointment`)) {
+      clickInfo.event.remove();
+    }
+  };
+
+  renderEventContent = (e) => {
+    return (
+      <div>
+        {this.state.events.map((e) => (
+          <b> { e.name } </b>
+        ))}
+      </div>
+    );
+  };
+
+  addAppointment = () => {
+    this.setState({
+        show: true,
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      show: false,
+    });
+  };
+
+  submitEvent = (e) => {
+    //stock appointement
+    database
+      .ref("appointments/")
+      .push({
+        "title": this.state.name,
+        "start": this.state.startDate,
+        "uid": auth.currentUser.uid,
+      })
+      .catch(function (error) {
+        console.log(error.message);
+        console.log(error.code);
+      });
+
+      //stock history appointement
+      database
+      .ref("appointments-lists/" + auth.currentUser.uid)
+      .push({
+        "name": this.state.name,
+        "start_Date": this.state.startDate,
+        "day": this.state.day,
+      })
+      .catch(function (error) {
+        console.log(error.message);
+        console.log(error.code);
+      });
+
+      //send mail to doctor
+      emailjs
+        .sendForm('gmail', 'template', e.target, 'user_ZfMOqTgjCdALX7916gbj2')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
         });
-    }
+  };
 
-    handleEventRemove = (clickInfo) =>{
-        if (window.confirm(`Are you sure you want to delete this appointment`)) {
-            clickInfo.event.remove()
-        }
-    }
-
-    render() {
-        function renderEventContent(eventInfo) {
-            return (
-              <div>
-                <b>{eventInfo.timeText}</b> {eventInfo.event.title}
-              </div>
-            )
-        }
-
-        
-
-        return (
-            <div>
-                <FullCalendar
-                    plugins={[ timeGridPlugin, interactionPlugin ]}
+  render() {
+    return (
+      <div className="col">
+        <div className="row">
+          <div className="col mb-3">
+            <div className="card">
+              <div className="card-body">
+                <Button
+                  onClick={this.addAppointment}
+                  style={{ float: "right", marginLeft: "10px" }}
+                >
+                  Make Appointment
+                </Button>
+                <div className="e-profile">
+                  <FullCalendar
+                    headerToolbar={{
+                      left: "prev,next today",
+                      center: "title",
+                      right: "",
+                    }}
+                    plugins={[timeGridPlugin, interactionPlugin]}
                     initialView="timeGridWeek"
                     themeSystem="bootstrap"
                     allDaySlot={false}
@@ -61,17 +203,100 @@ class CalendarComponent extends Component {
                     slotMinTime="08:00:00"
                     slotMaxTime="16:00:00"
                     height="auto"
-                    select={this.handleEventClick}
-                    selectable={true}
-                    eventContent={renderEventContent}
-                    eventClick={this.handleEventRemove}
+                    eventContent={this.renderEventContent}
+                    //dayMaxEventRows={16}
+                    //eventClick={this.handleEventRemove}
                     events={[
-                        { title: this.state.name, date: this.state.startDate }
+                      //{}
                     ]}
-                />
+                  />
+
+                  <Modal
+                    className="modal"
+                    show={this.state.show}
+                    onHide={this.handleClose}
+                    animation={false}
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title className="font-weight-bold">
+                        Make Appointment
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <div className="col mb-4">
+                        <div className="card">
+                          <div className="card-body">
+                            <Form onSubmit={this.submitEvent}>
+                              <Form.Group>
+                                <Form.Label>full name</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  className="form-control"
+                                  placeholder="Enter your name"
+                                  onChange={(e) => {
+                                    const nom = e.target.value;
+                                    this.setState({
+                                      name: nom,
+                                    });
+                                  }}
+                                  name="name"
+                                  required
+                                />
+                              </Form.Group>
+                              <Form.Group>
+                                <Form.Label>date</Form.Label>
+                                <Form.Control
+                                  type="date"
+                                  name="SelectedDate"
+                                  placeholder="Choose a date"
+                                  onChange={(e) => {
+                                    const dayS = e.target.value;
+                                    this.setState({
+                                      day: dayS,
+                                    });
+                                  }}
+                                />
+                              </Form.Group>
+                              <Form.Group>
+                                <Form.Label>available time</Form.Label>
+                                <Form.Control
+                                  as="select"
+                                  name="time"
+                                  onChange={(e) => {
+                                    const startD = "T" + e.target.value + "+01:00";
+                                    const sDate = this.state.day + "" + startD;
+                                    this.setState({
+                                      startDate: sDate,
+                                    });
+                                  }}
+                                >
+                                  <option value disabled>
+                                    Choose an available time
+                                  </option>
+                                  {this.state.times.map((time) => (
+                                    <option key={time.id} value={time.start}>
+                                      from {time.start}
+                                    </option>
+                                  ))}
+                                </Form.Control>
+                              </Form.Group>
+                              <Button variant="primary" type="submit" block>
+                                Save
+                              </Button>
+                            </Form>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal.Body>
+                  </Modal>
+                </div>
+              </div>
             </div>
-        )
-    }
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default CalendarComponent
+export default CalendarComponent;

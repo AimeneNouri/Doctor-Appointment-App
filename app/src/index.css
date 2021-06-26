@@ -1,3 +1,47 @@
 .fc-event{
   height: 24px !important;
 }
+.fc-today {
+  background: #f8f9fa !important;
+} 
+.modal{
+  top: 10vh;
+}
+.content-table{
+  border-collapse: collapse;
+  margin: 25px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 3px;
+  font-size: 1em;
+  overflow: hidden;
+}
+
+.content-table thead tr {
+  background-color: #9368E9;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #9368E9;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #9368E9;
+}
