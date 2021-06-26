@@ -16,12 +16,15 @@ class AppointmentLists extends React.Component{
   componentDidMount(){
     const dbRef = database.ref('appointments-lists/' + auth.currentUser.uid);
     const post = dbRef.orderByKey();
+    const history = [];
     post.once("value", snap => {
         snap.forEach(child => {
-            this.state.history.push(child.val());
+            history.push(child.val());
         })
+        this.setState({history:history});
+        console.log(this.state.history);
     })
-    console.log(this.state.history);
+    
   }  
 
   render(){
@@ -42,15 +45,19 @@ class AppointmentLists extends React.Component{
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          {this.state.history.map((day, name, start_Date) => {
+                        
+                          {this.state.history.map(({day, name, start_Date}) => {
                             return (
-                             
+                              <tr>
+                                <td></td>
+                                <td>{name}</td>
                                 <td>{day}</td>
+                                <td>{start_Date}</td>
+                              </tr>
                               
                             )
                           })}
-                          </tr>
+                         
                       </tbody>
                     </table>
                   </div>

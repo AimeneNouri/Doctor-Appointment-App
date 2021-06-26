@@ -5,7 +5,7 @@ class Dashbord extends Component{
   render(){
     return (
       <div className="content">
-        <CalendarComponent />
+        <CalendarComponent  />
       </div>
     );
   }

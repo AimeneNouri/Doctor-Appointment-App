@@ -8,10 +8,11 @@ import emailjs from 'emailjs-com';
 import "../index.css";
 
 class CalendarComponent extends Component {
+  
   state = {
     name: "",
     day: "",
-    startDate: "",
+    startDate: "T08:00:00+01:00",
     show: false,
     events: [],
     times: [
@@ -101,13 +102,17 @@ class CalendarComponent extends Component {
   componentDidMount() {
     const dbRef = database.ref('appointments/');
     const post = dbRef.orderByKey();
+    const events = [];
     post.once("value", snap => {
         snap.forEach(child => {
-            this.state.events.push(child.val());
+            events.push(child.val());
         })
+        this.setState({events:events});
+        console.log(this.state.events)
     })
-    console.log(this.state.events)
-    this.renderEventContent();
+    
+    
+    //this.renderEventContent();
   }
 
   handleEventRemove = (clickInfo) => {
@@ -119,9 +124,9 @@ class CalendarComponent extends Component {
   renderEventContent = (e) => {
     return (
       <div>
-        {this.state.events.map((e) => (
-          <b> { e.name } </b>
-        ))}
+       
+          <b> { e.event.title } </b>
+        
       </div>
     );
   };
@@ -140,12 +145,23 @@ class CalendarComponent extends Component {
 
   submitEvent = (e) => {
     //stock appointement
-    database
+    const isExist = this.state.events.find((event)=>event.start == this.state.day+""+this.state.startDate);
+    if(isExist){
+      //Show alert message
+      alert("Already taken");
+
+    }else{
+      database
       .ref("appointments/")
       .push({
         "title": this.state.name,
-        "start": this.state.startDate,
+        "start": this.state.day+""+this.state.startDate,
         "uid": auth.currentUser.uid,
+      }).then(()=>{
+        const events=[];
+         Object.assign(events,this.state.events);
+         events.push({start:this.state.day+""+this.state.startDate,title:this.state.name,uid:auth.currentUser.uid});
+         this.setState({events:events});
       })
       .catch(function (error) {
         console.log(error.message);
@@ -173,6 +189,9 @@ class CalendarComponent extends Component {
         }, (error) => {
             console.log(error.text);
         });
+    }
+    this.handleClose();
+    return false;
   };
 
   render() {
@@ -206,9 +225,7 @@ class CalendarComponent extends Component {
                     eventContent={this.renderEventContent}
                     //dayMaxEventRows={16}
                     //eventClick={this.handleEventRemove}
-                    events={[
-                      //{}
-                    ]}
+                    events={this.state.events}
                   />
 
                   <Modal
@@ -264,7 +281,7 @@ class CalendarComponent extends Component {
                                   name="time"
                                   onChange={(e) => {
                                     const startD = "T" + e.target.value + "+01:00";
-                                    const sDate = this.state.day + "" + startD;
+                                    const sDate =  startD;
                                     this.setState({
                                       startDate: sDate,
                                     });
