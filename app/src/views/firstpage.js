@@ -7,7 +7,7 @@ function Firstpage() {
     <header className="headerFirst">
       <div className="mainheader">
         <div className="logo">
-          <a href="/index">DOCTOR APPOINTMENT</a>
+          <a href="/">DOCTOR APPOINTMENT</a>
         </div>
 
         <div className="menubtn">
