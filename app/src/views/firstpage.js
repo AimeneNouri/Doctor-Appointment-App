@@ -12,7 +12,7 @@ function Firstpage() {
 
         <div className="menubtn">
           <Link to="/login"><button style={{marginRight: "10px"}}> Login </button></Link>
-          <Link to="/reigster"><button> Register </button></Link>
+          <Link to="/register"><button> Register </button></Link>
         </div>
       </div>
 

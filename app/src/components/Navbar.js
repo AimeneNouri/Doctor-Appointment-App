@@ -48,8 +48,8 @@ function Navbar({ sidebarOpen, openSidebar }) {
               <div className="menu">
                 <h3>{ name }</h3>
                 <ul>
-                    <a href="/profile"><li><i class="fas fa-user" />Profile</li></a>
-                    <a href="/admin/editprofile"><li><i class="fas fa-ticket-alt" />Mes réservations</li></a>
+                    <a href="/profile"><li><i class="fas fa-user" />User Profile</li></a>
+                    <a href="/appointment-lists"><li><i class="fas fa-ticket-alt" />My reservations</li></a>
                     <a onClick={handleLogout}><li><i class="fas fa-sign-out-alt" />Logout</li></a>
                 </ul>
               </div>

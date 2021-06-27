@@ -16,7 +16,7 @@ function App() {
               <PrivateRoute exact path="/home" component={Index} />
               <PrivateRoute exact path="/profile" component={Index} />
               <PrivateRoute exact path="/appointment-lists" component={Index} />
-              <Route path="/index" component={Fisrt} />
+              <Route exact path="/" component={Fisrt} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
           </AuthProvider>
