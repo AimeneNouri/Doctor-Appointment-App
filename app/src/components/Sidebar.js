@@ -6,7 +6,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
     <div className={sidebarOpen ? "sidebar_responsive" : "sidebar"} id="sidebar">
       <div className="sidebar-wrapper">
         <div className="logo">
-          <Link to='/' className="simple-text">
+          <Link to='/home' className="simple-text">
             Doctor &nbsp; Appointment
           </Link>
         </div>

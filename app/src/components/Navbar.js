@@ -11,7 +11,7 @@ function Navbar({ sidebarOpen, openSidebar }) {
   async function handleLogout() {
     try{
       await logout()
-      history.push("/index")
+      history.push("/")
     }catch{
       alert("Failed to log out")
     }
