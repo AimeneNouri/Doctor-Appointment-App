@@ -99,9 +99,7 @@ class UserProfile extends React.Component {
                                     height: "140px",
                                     backgroundColor: "rgb(233, 236, 239)",
                                   }}>
-                                    <span style={{opacity: ".5"}}>
-                                        144x144
-                                    </span>
+                                    <img />
                                 </div>
                               </div>
                             </div>
@@ -142,26 +140,26 @@ class UserProfile extends React.Component {
                                     <div className="row">
                                       <div className="col">
                                         <div className="form-group">
-                                          <label>Nom</label>
+                                          <label>First Name</label>
                                           <input
                                             className="form-control"
                                             type="text"
                                             name="nom"
                                             placeholder="Smith"
-                                            value={this.state.users.nom}
+                                            value={this.state.users.prenom}
                                             readOnly    
                                           />
                                         </div>
                                       </div>
                                       <div className="col">
                                         <div className="form-group">
-                                          <label>Prenom</label>
+                                          <label>Last Name</label>
                                           <input
                                             className="form-control"
                                             type="text"
                                             name="prenom"
                                             placeholder="john"
-                                            value={this.state.users.prenom}
+                                            value={this.state.users.nom}
                                             readOnly
                                           />
                                         </div>
@@ -170,7 +168,7 @@ class UserProfile extends React.Component {
                                     <div className="row">
                                       <div className="col">
                                         <div className="form-group">
-                                          <label>Adresse</label>
+                                          <label>Address</label>
                                           <input
                                             className="form-control"
                                             type="text"
@@ -183,7 +181,7 @@ class UserProfile extends React.Component {
                                       </div>
                                       <div className="col">
                                         <div className="form-group">
-                                          <label>Telephone</label>
+                                          <label>Phone Number</label>
                                           <input
                                             className="form-control"
                                             type="text"
@@ -216,14 +214,14 @@ class UserProfile extends React.Component {
                                     <div className="row">
                                       <div className="col">
                                         <div className="form-group password">
-                                          <label>Mot de passe Actuel</label>
-                            
+                                          <label>Current Password</label>
                                           <input
                                             className="form-control input-fields"
                                             type={this.state.type}
                                             placeholder="••••••"
                                             ref={this.passwordRef}
                                             defaultValue={this.state.users.password}
+                                            readOnly
                                           />
                                           <i onClick={this.showHide} className={this.state.type === 'password' ? 'fa fa-eye-slash icon' : 'fa fa-eye icon'}></i>
                                         </div>

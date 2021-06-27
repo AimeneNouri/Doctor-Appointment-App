@@ -99,7 +99,19 @@ export default function Register() {
                     <div className="row">
                       <div className="col">
                         <div className="form-group">
-                          <label>Nom</label>
+                          <label>First Name</label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            ref={prenomRef}
+                            placeholder="John"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col">
+                        <div className="form-group">
+                          <label>Last Name</label>
                           <input
                             className="form-control"
                             type="text"
@@ -109,23 +121,11 @@ export default function Register() {
                           />
                         </div>
                       </div>
-                      <div className="col">
-                        <div className="form-group">
-                          <label>Prenom</label>
-                          <input
-                            className="form-control"
-                            type="text"
-                            ref={prenomRef}
-                            placeholder="Jhon"
-                            required
-                          />
-                        </div>
-                      </div>
                     </div>
                     <div className="row">
                       <div className="col">
                         <div className="form-group">
-                          <label>Adresse</label>
+                          <label>Address</label>
                           <input
                             className="form-control"
                             type="text"
@@ -137,7 +137,7 @@ export default function Register() {
                       </div>
                       <div className="col">
                         <div className="form-group">
-                          <label>Numero telephone</label>
+                          <label>Phone Number</label>
                           <input
                             className="form-control"
                             type="text"

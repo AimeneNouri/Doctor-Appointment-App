@@ -14,19 +14,19 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
           <li className="nav-item">
             <NavLink className="nav-link" to='/home'>
               <i class="fas fa-chart-pie"></i>
-              <p>Acceuil</p>
+              <p>Home</p>
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to='/profile'>
               <i className="fas fa-user-alt"></i>
-              <p>Profil Utilisateur</p>
+              <p>User Profile</p>
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to='/appointment-lists'>
               <i className="fas fa-ticket-alt"></i>
-              <p>Mes réservations</p>
+              <p>My reservations</p>
             </NavLink>
           </li>
         </ul>

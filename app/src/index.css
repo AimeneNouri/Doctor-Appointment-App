@@ -60,10 +60,9 @@
 
 /*index page*/
 
-header {
+.headerFirst {
   width: 100%;
   height: 100vh;
-  background-image: url('');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -77,21 +76,9 @@ header {
 }
 
 .mainheader .logo a {
-  font-size: 20px;
+  font-size: 1.5rem;
   padding-left: 60px;
-}
-
-.mainheader nav {
-  width: 450px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.mainheader nav a {
-  text-decoration: none;
-  color: black;
-  text-transform: uppercase;
+  color: #9368E9;
 }
 
 .menubtn {
@@ -115,46 +102,62 @@ header {
   background: #9368e9c4;
 }
 
-main {
+.mainFisrt {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-main .right-sec {
+.mainFisrt .right {
   padding-right: 70px;
 }
 
-main .left-sec {
+.mainFisrt .left {
   padding-left: 100px;
 }
 
-.left-sec h2 {
+.right{
+  margin-top: 50px;
+}
+
+.left h3 {
   font-size: 20px;
   text-transform: capitalize;
   font-weight: lighter;
   color: #242424;
-  margin-top: 100px;
 }
 
-.left-sec h1 {
+.left h1 {
   font-size: 55px;
   text-transform: capitalize;
   font-weight: 700;
   margin: 15px 0;
 }
 
-.left-sec p {
+.left p {
   margin-bottom: 20px;
 }
 
-.left-sec button {
+.left button {
   padding: 15px 45px;
   text-align: center;
   font-size: 14px;
   color: #fff;
+  background: #9368E9;
   border: none;
-  background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
   border-radius: 10px;
+  cursor: pointer;
 }
+
+@media only screen and (max-width: 778px){
+  .mainheader .logo{
+    display: none;
+  }
+  .mainheader {
+    justify-content: center;
+  }
+  .right{
+    display: none;
+  }
+} 

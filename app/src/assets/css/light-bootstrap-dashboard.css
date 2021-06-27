@@ -4853,7 +4853,7 @@ License - nucleoapp.com/license/
     opacity: 1;
 }
 
-.nav-item a i{
+.nav-item a img{
     border-radius: 50%;
     cursor: pointer;
 }

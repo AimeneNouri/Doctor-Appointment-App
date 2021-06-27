@@ -1,36 +1,32 @@
 import React from "react";
+import mainbg from "../assets/img/mainbg.png"
+import { Link } from 'react-router-dom'
 
 function Firstpage() {
   return (
-    <header>
+    <header className="headerFirst">
       <div className="mainheader">
         <div className="logo">
           <a href="/index">DOCTOR APPOINTMENT</a>
         </div>
 
-        <nav>
-          <a href="#">home</a>
-          <a href="#">services</a>
-          <a href="#">about</a>
-        </nav>
-
         <div className="menubtn">
-          <button style={{marginRight: "10px"}}> Login </button>
-          <button> Register </button>
+          <Link to="/login"><button style={{marginRight: "10px"}}> Login </button></Link>
+          <Link to="/reigster"><button> Register </button></Link>
         </div>
       </div>
 
-      <main>
-        <section className="left-sec">
-          <h2> We Are Here For Your Care</h2>
+      <main className="mainFisrt">
+        <section className="left">
+          <h3> We Are Here For Your Care</h3>
           <h1> We The Best Doctors</h1>
           <p>We are here for your care 24/7. Any help just call us.</p>
-          <button>Make an appointment</button>
+          <Link to="/login"><button>Make an appointment</button></Link>
         </section>
 
-        <section className="right-sec">
+        <section className="right">
           <figure>
-            <img src="images/mainbg.png" />
+            <img src={mainbg} />
           </figure>
         </section>
       </main>

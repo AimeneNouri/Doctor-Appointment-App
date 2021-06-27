@@ -119,6 +119,10 @@ class CalendarComponent extends Component {
     }
   };
 
+  handleEventInfo = (e) => {
+    alert("Name of Client: " + e.event.title);
+  };
+
   renderEventContent = (e) => {
     return (
       <div>
@@ -222,8 +226,8 @@ class CalendarComponent extends Component {
                     slotMaxTime="16:00:00"
                     height="auto"
                     eventContent={this.renderEventContent}
-                    //dayMaxEventRows={16}
-                    //eventClick={this.handleEventRemove}
+                    eventBackgroundColor="#9368E9"
+                    eventClick={this.handleEventInfo}
                     events={this.state.events}
                   />
 
