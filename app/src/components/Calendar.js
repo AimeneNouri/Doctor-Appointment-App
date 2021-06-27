@@ -120,7 +120,7 @@ class CalendarComponent extends Component {
   };
 
   handleEventInfo = (e) => {
-    alert("Name of Client: " + e.event.title);
+    alert("Name of Client : " + e.event.title + "\n" + "Time : " + e.event.start);
   };
 
   renderEventContent = (e) => {
