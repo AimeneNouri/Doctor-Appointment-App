@@ -50,7 +50,7 @@ class UserProfile extends React.Component {
                     prenom: data.prenom,
                     adresse: data.adresse,
                     tel: data.tel,
-                    uid: data.uid,
+                    uid: auth.currentUser.uid,
                     password: data.password,
                     email: data.email,
                     image: data.image
@@ -61,7 +61,18 @@ class UserProfile extends React.Component {
 
     handleSubmit(e){
         e.preventDefault()
+       const userRef= database.ref("users/" +auth.currentUser.uid)
+      
+      userRef.set({
+        nom : this.state.users.nom?this.state.users.nom:'' ,
+        prenom: this.state.users.prenom?this.state.users.prenom:'' ,
+        adresse: this.state.users.adresse?this.state.users.adresse:'' ,
+        tel: this.state.users.tel,
+        uid: this.state.users.uid?this.state.users.uid:'',
+        password: this.state.users.password?this.state.users.password:'',
+        email: this.state.users.email?this.state.users.email:''
 
+      })
         try {
           this.setState({
             error: '',
@@ -111,10 +122,10 @@ class UserProfile extends React.Component {
                                 <p className="mb-0">
                                   <span> {this.state.users.email} </span>
                                 </p>
-                                <div className="mt-2">
+                                 <div className="mt-2">
                                   <span className="file-input btn btn-primary btn-file" style={{ cursor: "pointer" }}>
                                     <i className="fa fa-fw fa-camera" /> Browse&hellip;{" "}
-                                    <input type="file" onChange={(e) => {this.imageHandler(e.target.files)}}/>
+                                    <input type="file" onChange={(e) => {this.imageHandler(e.target.files)}}/> 
                                   </span>
                                 </div>
                               </div>
@@ -147,7 +158,14 @@ class UserProfile extends React.Component {
                                             name="nom"
                                             placeholder="Smith"
                                             value={this.state.users.prenom}
-                                            readOnly    
+                                            
+                                            onChange = {(e)=>{
+                                          
+                                                 var users = {...this.state.users};
+                                                 users.prenom = e.target.value;
+                                                 this.setState({users});
+
+                                            }}    
                                           />
                                         </div>
                                       </div>
@@ -160,7 +178,13 @@ class UserProfile extends React.Component {
                                             name="prenom"
                                             placeholder="john"
                                             value={this.state.users.nom}
-                                            readOnly
+                                            onChange = {(e)=>{
+                                          
+                                              var users = {...this.state.users};
+                                              users.nom = e.target.value;
+                                              this.setState({users});
+
+                                         }}
                                           />
                                         </div>
                                       </div>
@@ -175,7 +199,13 @@ class UserProfile extends React.Component {
                                             name="adresse"
                                             placeholder="Ain Chock, Casablanca"
                                             value={this.state.users.adresse}
-                                            readOnly
+                                            onChange = {(e)=>{
+                                          
+                                              var users = {...this.state.users};
+                                              users.adresse = e.target.value;
+                                              this.setState({users});
+
+                                         }}
                                           />
                                         </div>
                                       </div>
@@ -188,7 +218,13 @@ class UserProfile extends React.Component {
                                             name="numTel"
                                             placeholder="+1-202-555-0155"
                                             value={this.state.users.tel}
-                                            readOnly
+                                            onChange = {(e)=>{
+                                          
+                                              var users = {...this.state.users};
+                                              users.tel = e.target.value;
+                                              this.setState({users});
+
+                                         }}
                                           />
                                         </div>
                                       </div>
@@ -202,7 +238,13 @@ class UserProfile extends React.Component {
                                             type="text"
                                             placeholder="user@example.com"
                                             value={this.state.users.email}
-                                            readOnly
+                                            onChange = {(e)=>{
+                                          
+                                              var users = {...this.state.users};
+                                              users.email = e.target.value;
+                                              this.setState({users});
+
+                                         }}
                                           />
                                         </div>
                                       </div>
@@ -221,7 +263,13 @@ class UserProfile extends React.Component {
                                             placeholder="••••••"
                                             ref={this.passwordRef}
                                             defaultValue={this.state.users.password}
-                                            readOnly
+                                            onChange = {(e)=>{
+                                          
+                                              var users = {...this.state.users};
+                                              users.password = e.target.value;
+                                              this.setState({users});
+
+                                         }}
                                           />
                                           <i onClick={this.showHide} className={this.state.type === 'password' ? 'fa fa-eye-slash icon' : 'fa fa-eye icon'}></i>
                                         </div>
