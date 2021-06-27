@@ -1,13 +1,16 @@
-.fc-event{
+.fc-event {
   height: 24px !important;
 }
+
 .fc-today {
   background: #f8f9fa !important;
-} 
-.modal{
+}
+
+.modal {
   top: 10vh;
 }
-.content-table{
+
+.content-table {
   border-collapse: collapse;
   margin: 25px 0;
   margin-left: 10px;
@@ -24,8 +27,7 @@
   font-weight: bold;
 }
 
-.content-table th,
-.content-table td {
+.content-table th, .content-table td {
   padding: 12px 15px;
 }
 
@@ -44,4 +46,115 @@
 .content-table tbody tr.active-row {
   font-weight: bold;
   color: #9368E9;
+}
+
+.names a {
+  color: #9368E9;
+  font-weight: 600;
+}
+
+.names a:hover {
+  color: #9368e9c7;
+  font-weight: 600;
+}
+
+/*index page*/
+
+header {
+  width: 100%;
+  height: 100vh;
+  background-image: url('');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.mainheader {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainheader .logo a {
+  font-size: 20px;
+  padding-left: 60px;
+}
+
+.mainheader nav {
+  width: 450px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mainheader nav a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+}
+
+.menubtn {
+  margin-right: 60px;
+  outline: none;
+}
+
+.mainheader button {
+  padding: 10px 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  background: #9368E9;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.mainheader button:hover {
+  background: #9368e9c4;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main .right-sec {
+  padding-right: 70px;
+}
+
+main .left-sec {
+  padding-left: 100px;
+}
+
+.left-sec h2 {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: lighter;
+  color: #242424;
+  margin-top: 100px;
+}
+
+.left-sec h1 {
+  font-size: 55px;
+  text-transform: capitalize;
+  font-weight: 700;
+  margin: 15px 0;
+}
+
+.left-sec p {
+  margin-bottom: 20px;
+}
+
+.left-sec button {
+  padding: 15px 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
+  border-radius: 10px;
 }

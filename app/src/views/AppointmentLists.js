@@ -7,10 +7,7 @@ class AppointmentLists extends React.Component{
 
   state = {
       history: [],
-      a:[
-        "name",
-        "nameh",
-      ]
+      cpt: 0
   }
 
   componentDidMount(){
@@ -22,7 +19,6 @@ class AppointmentLists extends React.Component{
             history.push(child.val());
         })
         this.setState({history:history});
-        console.log(this.state.history);
     })
     
   }  
@@ -38,26 +34,24 @@ class AppointmentLists extends React.Component{
                     <table className="content-table"> 
                       <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Start time</th>
+                          <th>Id</th>
+                          <th>Name</th>
+                          <th>Date</th>
+                          <th>Start time</th>
                         </tr>
                       </thead>
                       <tbody>
-                        
-                          {this.state.history.map(({day, name, start_Date}) => {
-                            return (
-                              <tr>
-                                <td></td>
-                                <td>{name}</td>
-                                <td>{day}</td>
-                                <td>{start_Date}</td>
-                              </tr>
-                              
-                            )
-                          })}
-                         
+                        {this.state.history.map(({day, name, start_Date}, index) => {
+                          
+                          return (
+                            <tr>
+                              <td>{++index}</td>
+                              <td>{name}</td>
+                              <td>{day}</td>
+                              <td>{start_Date}</td>
+                            </tr>
+                          )
+                        })}
                       </tbody>
                     </table>
                   </div>

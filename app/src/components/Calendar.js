@@ -110,8 +110,6 @@ class CalendarComponent extends Component {
         this.setState({events:events});
         console.log(this.state.events)
     })
-    
-    
     //this.renderEventContent();
   }
 
@@ -145,7 +143,7 @@ class CalendarComponent extends Component {
 
   submitEvent = (e) => {
     //stock appointement
-    const isExist = this.state.events.find((event)=>event.start == this.state.day+""+this.state.startDate);
+    const isExist = this.state.events.find((event)=>event.start === this.state.day+""+this.state.startDate);
     if(isExist){
       //Show alert message
       alert("Already taken");
@@ -162,6 +160,7 @@ class CalendarComponent extends Component {
          Object.assign(events,this.state.events);
          events.push({start:this.state.day+""+this.state.startDate,title:this.state.name,uid:auth.currentUser.uid});
          this.setState({events:events});
+         alert("Appointment saved")
       })
       .catch(function (error) {
         console.log(error.message);

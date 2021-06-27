@@ -9,7 +9,7 @@ class Footer extends Component {
                     <nav>
                         <ul className="footer-menu">
                             <li>
-                                <Link to="/">
+                                <Link to="/home">
                                     Acceuil
                                 </Link>
                             </li>
@@ -25,7 +25,7 @@ class Footer extends Component {
                             </li>
                         </ul>
                         <p className="copyright text-center">
-                            © 2021
+                            <span className="names"><a href="https://github.com/Abdellaharrad">Arrad</a></span> and <span className="names"><a href="https://github.com/AimeneNouri">Aimene</a></span> © 2021
                         </p>
                     </nav>
                 </div>

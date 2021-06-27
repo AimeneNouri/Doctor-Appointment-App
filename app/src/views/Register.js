@@ -35,7 +35,7 @@ export default function Register() {
         adresseRef.current.value,
         telRef.current.value
       );
-      history.push("/");
+      history.push("/home");
     } catch {
       setError("Failed to create an account");
     }

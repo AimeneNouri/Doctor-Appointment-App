@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "react-bootstrap";
 import "../assets/css/dashboard.css";
 import { database, auth } from "../firebase";
 
@@ -17,11 +18,11 @@ class UserProfile extends React.Component {
                 password: '',
                 email: ''
             },
-
+            error: '',
+            loading: false,
             type : 'password',
             visible : 'false'
         }
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -61,20 +62,22 @@ class UserProfile extends React.Component {
     handleSubmit(e){
         e.preventDefault()
 
-        database.ref('users/' + auth.currentUser.uid).set({
-            "uid": auth.currentUser.uid,
-            "nom" : this.state.users.nom,
-            "prenom" : this.state.users.prenom,
-            "adresse" : this.state.users.adresse,
-            "tel" : this.state.users.tel,
-            "email": this.state.users.email,
-            "password": this.state.users.password,
-        }).catch(function(error) {
-            console.log(error.message);
-            console.log(error.code);
+        try {
+          this.setState({
+            error: '',
+            loading: true
+          })
+          alert("Profile Updated successfully")
+        } catch {
+          this.setState({
+            error: "Failed to Log in"
+          })
+        }
+
+        this.setState({
+          loading: false
         })
 
-        alert("Profile Updated successfully")
     }
 
     render(){
@@ -86,6 +89,7 @@ class UserProfile extends React.Component {
                     <div className="card">
                       <div className="card-body">
                         <div className="e-profile">
+                          {this.state.error && <Alert variant="danger">{this.state.error}</Alert>}
                           <div className="row">
                             <div className="col-12 col-sm-auto mb-3">
                               <div className="mx-auto" style={{ width: "140px" }}>
@@ -110,7 +114,7 @@ class UserProfile extends React.Component {
                                   <span> {this.state.users.email} </span>
                                 </p>
                                 <div className="mt-2">
-                                  <span class="file-input btn btn-primary btn-file" style={{ cursor: "pointer" }}>
+                                  <span className="file-input btn btn-primary btn-file" style={{ cursor: "pointer" }}>
                                     <i className="fa fa-fw fa-camera" /> Browse&hellip;{" "}
                                     <input type="file" onChange={(e) => {this.imageHandler(e.target.files)}}/>
                                   </span>
@@ -125,7 +129,7 @@ class UserProfile extends React.Component {
                           </div>
                           <ul className="nav nav-tabs">
                             <li className="nav-item">
-                              <a href className="active nav-link">
+                              <a className="active nav-link">
                                 Settings
                               </a>
                             </li>
@@ -209,9 +213,6 @@ class UserProfile extends React.Component {
                                 </div>
                                 <div className="row">
                                   <div className="col-12 col-sm-6 mb-3">
-                                    <div className="mb-2">
-                                      <b>Changer Password</b>
-                                    </div>
                                     <div className="row">
                                       <div className="col">
                                         <div className="form-group password">
@@ -221,38 +222,10 @@ class UserProfile extends React.Component {
                                             className="form-control input-fields"
                                             type={this.state.type}
                                             placeholder="••••••"
-                                            value={this.state.users.password}
+                                            ref={this.passwordRef}
+                                            defaultValue={this.state.users.password}
                                           />
-                                          <i onClick={this.showHide} class={this.state.type === 'password' ? 'fa fa-eye-slash icon' : 'fa fa-eye icon'}></i>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="row">
-                                      <div className="col">
-                                        <div className="form-group">
-                                          <label>Nouveau Mot de passe</label>
-                                          <input
-                                            className="form-control"
-                                            type={this.state.type}
-                                            placeholder="••••••"
-                                          />
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="row">
-                                      <div className="col">
-                                        <div className="form-group">
-                                          <label>
-                                            Confirmer{" "}
-                                            <span className="d-none d-xl-inline">
-                                              Mot de passe
-                                            </span>
-                                          </label>
-                                          <input
-                                            className="form-control"
-                                            type={this.state.type}
-                                            placeholder="••••••"
-                                          />
+                                          <i onClick={this.showHide} className={this.state.type === 'password' ? 'fa fa-eye-slash icon' : 'fa fa-eye icon'}></i>
                                         </div>
                                       </div>
                                     </div>
@@ -264,6 +237,9 @@ class UserProfile extends React.Component {
                                     <button className="btn btn-primary" type="submit">
                                       Save Changes
                                     </button>
+                                    <a className="btn btn-danger" href="/profile" style={{marginLeft: "10px"}}>
+                                      Cancel
+                                    </a>
                                   </div>
                                 </div>
                               </form>

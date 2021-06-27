@@ -7,25 +7,25 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
       <div className="sidebar-wrapper">
         <div className="logo">
           <Link to='/' className="simple-text">
-            Doctor &nbsp; Appoinment
+            Doctor &nbsp; Appointment
           </Link>
         </div>
         <ul className="nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to='/'>
-              <i className="nc-icon nc-chart-pie-35"></i>
+            <NavLink className="nav-link" to='/home'>
+              <i class="fas fa-chart-pie"></i>
               <p>Acceuil</p>
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to='/profile'>
-              <i className="nc-icon nc-circle-09"></i>
+              <i className="fas fa-user-alt"></i>
               <p>Profil Utilisateur</p>
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to='/appointment-lists'>
-              <i className="nc-icon nc-circle-09"></i>
+              <i className="fas fa-ticket-alt"></i>
               <p>Mes réservations</p>
             </NavLink>
           </li>
