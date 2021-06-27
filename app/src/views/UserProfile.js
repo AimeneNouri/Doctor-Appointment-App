@@ -102,18 +102,6 @@ class UserProfile extends React.Component {
                         <div className="e-profile">
                           {this.state.error && <Alert variant="danger">{this.state.error}</Alert>}
                           <div className="row">
-                            <div className="col-12 col-sm-auto mb-3">
-                              <div className="mx-auto" style={{ width: "140px" }}>
-                                <div
-                                  className="d-flex justify-content-center align-items-center rounded"
-                                  style={{
-                                    height: "140px",
-                                    backgroundColor: "rgb(233, 236, 239)",
-                                  }}>
-                                    <img />
-                                </div>
-                              </div>
-                            </div>
                             <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                               <div className="text-center text-sm-left mb-2 mb-sm-0">
                                 <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
@@ -122,12 +110,6 @@ class UserProfile extends React.Component {
                                 <p className="mb-0">
                                   <span> {this.state.users.email} </span>
                                 </p>
-                                 <div className="mt-2">
-                                  <span className="file-input btn btn-primary btn-file" style={{ cursor: "pointer" }}>
-                                    <i className="fa fa-fw fa-camera" /> Browse&hellip;{" "}
-                                    <input type="file" onChange={(e) => {this.imageHandler(e.target.files)}}/> 
-                                  </span>
-                                </div>
                               </div>
                               <div className="text-center text-sm-right">
                                 <div className="text-muted">
@@ -138,7 +120,7 @@ class UserProfile extends React.Component {
                           </div>
                           <ul className="nav nav-tabs">
                             <li className="nav-item">
-                              <a className="active nav-link">
+                              <a className="active nav-link" style={{ color: "#9368E9" }}>
                                 Settings
                               </a>
                             </li>
@@ -269,7 +251,8 @@ class UserProfile extends React.Component {
                                               users.password = e.target.value;
                                               this.setState({users});
 
-                                         }}
+                                            }}
+                                            readOnly
                                           />
                                           <i onClick={this.showHide} className={this.state.type === 'password' ? 'fa fa-eye-slash icon' : 'fa fa-eye icon'}></i>
                                         </div>

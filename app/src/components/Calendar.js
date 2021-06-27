@@ -227,6 +227,7 @@ class CalendarComponent extends Component {
                     height="auto"
                     eventContent={this.renderEventContent}
                     eventBackgroundColor="#9368E9"
+                    eventBorderColor="#9368E9"
                     eventClick={this.handleEventInfo}
                     events={this.state.events}
                   />

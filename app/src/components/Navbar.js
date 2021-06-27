@@ -43,7 +43,7 @@ function Navbar({ sidebarOpen, openSidebar }) {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <a onClick={openDropDown} className="profile">
-                  <img width="40" src="https://avatars.githubusercontent.com/u/48455549?v=4" alt="Avatar" />
+                  <i className="fas fa-user-circle" style={{fontSize: "30px", cursor: "pointer", color: "#9368E9"}}></i>
               </a>
               <div className="menu">
                 <h3>{ name }</h3>
