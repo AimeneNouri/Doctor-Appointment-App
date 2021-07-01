@@ -76,7 +76,7 @@ class UserProfile extends React.Component {
       nom: this.state.users.nom ? this.state.users.nom : "",
       prenom: this.state.users.prenom ? this.state.users.prenom : "",
       adresse: this.state.users.adresse ? this.state.users.adresse : "",
-      tel: this.state.users.tel,
+      tel: this.state.users.tel ? this.state.users.tel : "",
       uid: this.state.users.uid ? this.state.users.uid : "",
       password: this.state.users.password ? this.state.users.password : "",
       email: this.state.users.email ? this.state.users.email : "",

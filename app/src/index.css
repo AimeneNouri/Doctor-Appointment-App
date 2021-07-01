@@ -2,6 +2,13 @@
   height: 24px !important;
 }
 
+.fc{
+  width: 100% !important;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
 .fc-today {
   background: #f8f9fa !important;
 }
